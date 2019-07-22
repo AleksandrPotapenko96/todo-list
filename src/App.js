@@ -1,26 +1,63 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux'
+import { actions } from './actions/actionsCretor'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      todoValue: ''
+    }
+  }
+
+  componentDidMount() {
+    const { fetchTodos } = this.props
+    fetchTodos()
+  }
+
+  handleTodo = ({ target: { name, value } }) => this.setState({ [name]: value })
+
+  addNewTodo = () => {
+    const { todoValue } = this.state
+    const { createTodo } = this.props
+
+    createTodo(todoValue, () => {
+      // TODO
+    })
+  }
+  
+  render() {
+    const { todoValue } = this.state
+    const { todoList } = this.props
+
+    return (
+      <React.Fragment>
+        <h2>TODO List</h2>
+        <input type="text" placeholder="Add todo" name="todoValue" value={todoValue} onChange={this.handleTodo} />
+        <button onClick={this.addNewTodo}>Add ToDo</button>
+        <ul>
+          {todoList.map(todo => <li key={todo._id}>{todo.value}</li>)}
+        </ul>
+      </React.Fragment>
+    )
+  }
+
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    todoList: state.todoReducer.todoList
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  fetchTodos: () => dispatch(actions.FETCH_TODOS.REQUEST()),
+  createTodo: (data, callback) => dispatch(actions.CREATE_TODO.REQUEST(data, callback)),
+  updateTodo: (data, callback) => dispatch(actions.UPDATE_TODO.REQUEST(data, callback)),
+  removeTodo: (data, callback) => dispatch(actions.REMOVE_TODO.REQUEST(data, callback))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
