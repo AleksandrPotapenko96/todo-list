@@ -1,0 +1,22 @@
+.friends__list {
+	margin: 5px 50px 0 23px;
+	padding: 0;
+}
+.friends {
+	
+	border: 2px solid rgba(0, 0, 0, 0.589); 
+	width: 500px;
+	height: 57px;
+	display: table;
+}
+
+.personalImg{
+	width: calc(100% / 4)
+}
+
+.friend__list-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0 0 0 5px;
+}

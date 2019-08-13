@@ -1,25 +1,18 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import rootReducer from '../reducers/rootReducer'
-import createSagaMiddleware from 'redux-saga'
-import rootSaga from '../sagas/rootSaga'
-// import history from '../history'
-// import { routerMiddleware } from 'connected-react-router'
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import logger from "redux-logger";
 
-const sagaMiddleware = createSagaMiddleware()
+import sagas from "../sagas";
+import reducers from "../reducers";
 
-window.devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
+const initial = {};
 
-const store = createStore(
-  rootReducer(),
-  compose(
-    applyMiddleware(
-      // routerMiddleware(history),
-      sagaMiddleware
-    ),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
-)
+const saga = createSagaMiddleware();
+const middleware = [logger, saga];
+const store = createStore(reducers, initial, applyMiddleware(...middleware));
+console.log(store);
 
-sagaMiddleware.run(rootSaga)
 
-export default store
+saga.run(sagas);
+
+export default store;

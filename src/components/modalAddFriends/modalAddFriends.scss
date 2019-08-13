@@ -1,0 +1,85 @@
+.modal__container-friends {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  border: 2px solid rgba(0, 0, 0, 0.589);
+  margin: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 1);
+
+  .modal__container-actions {
+    display: flex;
+    align-items: flex-start;
+    .img__container {
+      display: flex;
+      align-items: center;
+      .add__avatar-img {
+        border: 1px solid black;
+        width: auto;
+        height: auto;
+        max-width: 150px;
+        max-height: 150px;
+        margin: 20px;
+      }
+    }
+  }
+
+  .add__avatar-button {
+    width: 100px;
+  }
+
+  .calendar__img {
+    width: 50px;
+    margin: 10px 5px 50px 50px;
+  }
+
+  p {
+    margin: 5px;
+    margin-bottom: 10px;
+  }
+
+  .button__container-info {
+    margin: 20px 20px 0 0;
+    height: 100%;
+    display: flex;
+    // justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+
+    .button__container-add {
+      margin: 5px;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .react-datepicker-wrapper {
+    display: flex;
+    height: 100%;
+    margin: 40px 0;
+    // margin-bottom: 80px;
+    width: 80%;
+    padding: 0 1px;
+    input {
+      width: 68px;
+    }
+  }
+
+  .input__container {
+    margin: 0 20px 0 20px;
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    width: 310px;
+    justify-content: space-between;
+    .input {
+      width: 148px;
+      margin: 0 5px 0 0;
+    }
+  }
+}

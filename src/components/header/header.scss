@@ -1,0 +1,33 @@
+.container {
+	margin: 35px 0 0 0;
+	height: 26px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+
+	.select {
+		width: 80px;
+	}
+
+	.seach {
+		width: 600px;
+		border-radius: 15px;
+		outline: none;
+		padding: 7px;
+
+		@media screen and (max-width: 1024px) {
+			width: auto
+		}
+
+		@media screen and (max-width: 667px) {
+			width: auto
+		}
+		
+	}
+
+	.button {
+		height: 33px;
+	}
+
+}
